@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>上传文件并生成学习报告</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body >
+
+    <div class="container">
+        <h1>学生个性化学习报告生成器</h1>
+
+        <!-- 上传文件表单 -->
+        <p>请提供你近期的学习情况</p>
+        <div class="form-container">
+            <input type="file" id="fileInput" accept=".png, .jpg, .jpeg" />
+            <br />
+            <button onclick="uploadFile()">上传文件</button>
+        </div>
+
+        <!-- 显示生成的报告 -->
+        <div class="report-container" id="reportContainer" style="display:none;">
+            <h2>生成的学习报告</h2>
+            <p id="reportContent"></p>
+        </div>
+    </div>
+
+    <script>
+        // 上传文件的 JavaScript 函数
+        function uploadFile() {
+            const fileInput = document.getElementById('fileInput');
+            const file = fileInput.files[0];
+            
+            if (!file) {
+                alert("请选择一个文件！");
+                return;
+            }
+
+            // 创建 FormData 对象并附加文件
+            const formData = new FormData();
+            formData.append("file", file);
+
+            // 发送 POST 请求到服务器
+            fetch("/upload", {
+                method: "POST",
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                // 显示报告内容
+                if (data.report) {
+                    document.getElementById('reportContent').innerHTML = data.report.replace(/\n/g, "<br>");
+                    document.getElementById('reportContainer').style.display = 'block';
+                } else {
+                    alert("生成报告失败，请稍后再试！");
+                }
+            })
+            .catch(error => {
+                console.error("上传文件时出错:", error);
+                alert("上传文件时出错，请稍后再试！");
+            });
+        }
+    </script>
+
+</body>
+</html>

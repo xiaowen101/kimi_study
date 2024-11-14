@@ -1,0 +1,59 @@
+body {
+    background-image: url('/static/1.png');  /* 图片路径 */
+    background-size: cover;  /* 背景图覆盖整个页面 */
+    background-position: center;  /* 背景图居中显示 */
+    background-repeat: no-repeat;  /* 防止背景图重复 */
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #4CAF50;
+}
+
+.form-container {
+    text-align: center;
+    margin: 20px 0;
+}
+
+#fileInput {
+    padding: 10px;
+    margin-right: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.report-container {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #f4f4f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+#reportContent {
+    line-height: 1.6;
+    word-wrap: break-word;
+}
